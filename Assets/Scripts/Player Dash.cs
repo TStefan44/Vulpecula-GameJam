@@ -29,6 +29,7 @@ public class PlayerDash : MonoBehaviour
             dashingPower=50f;
             dashingTime=0.5f;
             dashingCooldown=2f;
+            tr.startColor=Color.red;
         }
         if (Input.GetKeyDown(KeyCode.I))
         {
@@ -36,6 +37,7 @@ public class PlayerDash : MonoBehaviour
             dashingPower = 25f;
             dashingTime = 0.2f;
             dashingCooldown = 1f;
+            tr.startColor = Color.blue;
         }
 
 
