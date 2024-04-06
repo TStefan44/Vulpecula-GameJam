@@ -8,12 +8,16 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] private Rigidbody2D rb;
     [SerializeField] private Transform groundCheck;
     [SerializeField] private LayerMask groundLayer;
+    [SerializeField] private LayerMask enemyLayer;
 
     private bool playerWantsToJump;
     private bool playerJumped;
     private bool isGrounded;
     private bool dJumpCharge;
     private float horizontal;
+    private bool wasHit = false;
+    private float hitTimer = 1f;
+    private float currentHitTimer = 0f;
 
     public static PlayerMovement instance;
     private GameManager gameManager;
@@ -37,6 +41,18 @@ public class PlayerMovement : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        enemyInteract();
+
+        if (wasHit)
+        {
+            currentHitTimer += Time.deltaTime;
+            if (currentHitTimer >= hitTimer)
+            {
+                currentHitTimer = 0f;
+                wasHit = false;
+            }
+        }
+
         horizontal = gameInput.getHorizontalMovement();
         playerWantsToJump = gameInput.PlayerWantsToJump();
         playerJumped = gameInput.PlayerJumped();
@@ -60,6 +76,19 @@ public class PlayerMovement : MonoBehaviour
                 rb.velocity = new Vector2(rb.velocity.x, gameManager.PlayerJumpingPower);
                 dJumpCharge = false;
             }
+        }
+    }
+
+    private void enemyInteract()
+    {
+        Vector2 position = new Vector2(transform.position.x, transform.position.y);
+        Vector2 direction = new Vector2(horizontal, 0).normalized;
+        RaycastHit2D hit = new RaycastHit2D();
+
+        hit = Physics2D.CircleCast(position, gameManager.PlayerCastRadius, direction, 0f, enemyLayer);
+        if (hit && !wasHit) {
+            wasHit = true;
+            Debug.Log("Enemy Hit");
         }
     }
 
