@@ -17,6 +17,10 @@ public abstract class Enemy : MonoBehaviour
     protected float rangeAttack = 5f;
     protected Vector3 dirToPlayer;
 
+    protected bool takenDamage = false;
+    protected float IFramdeDamge = 0.5f;
+    protected float currentIFrame = 0f;
+
     protected void Awake()
     {
         gameManager = GameManager.instance;
@@ -30,14 +34,27 @@ public abstract class Enemy : MonoBehaviour
     // Update is called once per frame
     protected void Update()
     {
+        if (takenDamage)
+        {
+            if (currentIFrame < IFramdeDamge)
+            {
+                currentIFrame += Time.deltaTime;
+            }
+            else
+            {
+                currentIFrame = 0f;
+                takenDamage = false;
+            }
+        }
+
         bool detect = detectPlayer();
         if (detect)
         {
-            Debug.Log("Player Detect");
+            // Debug.Log("Player Detect");
 
             if (seePlayer())
             {
-                Debug.Log("Enemy can see player");
+                // Debug.Log("Enemy can see player");
                 goToPlayer();
 
                 if (Vector3.Distance(player.transform.position, rb.position) <= rangeAttack)
@@ -49,6 +66,16 @@ public abstract class Enemy : MonoBehaviour
             {
                 rb.velocity = Vector2.zero;
             }
+        }
+    }
+
+    public void takeDamage()
+    {
+
+        if (takenDamage == false)
+        {
+            Debug.Log("Enemy damaged");
+            takenDamage = true;
         }
     }
 
