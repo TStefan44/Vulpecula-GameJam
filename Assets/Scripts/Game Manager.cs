@@ -9,6 +9,7 @@ public class GameManager : MonoBehaviour
     [SerializeField] private float playerJumpingPower = 20f;
     [SerializeField] private float playerFallFactor = 0.5f;
     [SerializeField] private float playerGroundCapsule_w = 0.2f;
+    [SerializeField] private float playerCastRadius = 2f;
     [SerializeField] private bool playerCanDJump = true;
 
     public static GameManager instance;
@@ -40,4 +41,5 @@ public class GameManager : MonoBehaviour
     public float PlayerFallFactor => playerFallFactor;
     public float PlayerGroundCapsuleWidth => playerGroundCapsule_w;
     public bool PlayerCanDJump => playerCanDJump;
+    public float PlayerCastRadius => playerCastRadius;
 }
