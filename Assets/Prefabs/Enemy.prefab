@@ -95,7 +95,7 @@ GameObject:
   - component: {fileID: 8661887349279776159}
   - component: {fileID: 5475608900357753963}
   - component: {fileID: 8902224003167555291}
-  - component: {fileID: 1954739007598941568}
+  - component: {fileID: 8886717721807712558}
   m_Layer: 7
   m_Name: Enemy
   m_TagString: Untagged
@@ -182,7 +182,7 @@ CapsuleCollider2D:
   m_Offset: {x: 0, y: 0}
   m_Size: {x: 1, y: 2.5798745}
   m_Direction: 0
---- !u!114 &1954739007598941568
+--- !u!114 &8886717721807712558
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -194,6 +194,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5b1272b029f58c145ba7e80f1dfc31aa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  playerMask:
+    serializedVersion: 2
+    m_Bits: 256
+  groundMask:
+    serializedVersion: 2
+    m_Bits: 64
 --- !u!1 &8079301484248165833
 GameObject:
   m_ObjectHideFlags: 0

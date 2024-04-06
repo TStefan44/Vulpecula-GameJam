@@ -88,7 +88,7 @@ public class PlayerMovement : MonoBehaviour
         hit = Physics2D.CircleCast(position, gameManager.PlayerCastRadius, direction, 0f, enemyLayer);
         if (hit && !wasHit) {
             wasHit = true;
-            Debug.Log("Enemy Hit");
+            Debug.Log("Player was hit");
         }
     }
 
