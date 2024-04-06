@@ -32,7 +32,7 @@ public class NewBehaviourScript : MonoBehaviour
         lastLevelPartTransform = SpawnLevelPart(levelStart.transform.Find("EndPosition").position);
 
         int startingLevelParts = 5;
-        for (int i = 0; i < startingLevelParts; i++)
+        for (int i = 1; i < startingLevelParts; i++)
         {
             SpawnLevelPart();
         }
@@ -41,7 +41,7 @@ public class NewBehaviourScript : MonoBehaviour
     private void Update()
     {
         Debug.Log(lastLevelPartTransform.transform.GetChild(1).position);
-        //if (Vector3.Distance(player.transform.position, lastLevelPartTransform.transform.GetChild(1).position) < PLAYER_DISTANCE_SPAWN_PLATFORM)
+        if (Vector3.Distance(player.transform.position, lastLevelPartTransform.transform.GetChild(1).position) < PLAYER_DISTANCE_SPAWN_PLATFORM)
         {
             SpawnLevelPart();
         }    
