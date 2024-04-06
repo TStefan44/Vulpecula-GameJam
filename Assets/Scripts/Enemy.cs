@@ -89,9 +89,9 @@ public abstract class Enemy : MonoBehaviour
         }
         else
         {
-            direction = new Vector2(dirToPlayer.x, 0).normalized;
+            direction = new Vector2(dirToPlayer.x, rb.velocity.y).normalized;
         }
-        rb.velocity = direction * enemySpeed;
+        rb.velocity = new Vector2(direction.x * enemySpeed, rb.velocity.y);
     }
 
     virtual public void Attack() { }
