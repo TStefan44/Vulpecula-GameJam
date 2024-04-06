@@ -9,6 +9,7 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] private Transform groundCheck;
     [SerializeField] private LayerMask groundLayer;
     [SerializeField] private LayerMask enemyLayer;
+    [SerializeField] private LayerMask projectileLayer;
 
     private bool playerWantsToJump;
     private bool playerJumped;
@@ -42,6 +43,7 @@ public class PlayerMovement : MonoBehaviour
     void Update()
     {
         enemyInteract();
+        projectileInteract();
 
         if (wasHit)
         {
@@ -79,6 +81,21 @@ public class PlayerMovement : MonoBehaviour
         }
     }
 
+    private void projectileInteract()
+    {
+        Vector2 position = new Vector2(transform.position.x, transform.position.y);
+        Vector2 direction = new Vector2(horizontal, 0).normalized;
+        RaycastHit2D hit = new RaycastHit2D();
+
+        hit = Physics2D.CircleCast(position, gameManager.PlayerCastRadius, direction, 0f, projectileLayer);
+        if (hit && !wasHit)
+        {
+            wasHit = true;
+            Destroy(hit.transform.gameObject);
+            Debug.Log("Player was hit by projectile");
+        }
+    }
+
     private void enemyInteract()
     {
         Vector2 position = new Vector2(transform.position.x, transform.position.y);
@@ -88,7 +105,7 @@ public class PlayerMovement : MonoBehaviour
         hit = Physics2D.CircleCast(position, gameManager.PlayerCastRadius, direction, 0f, enemyLayer);
         if (hit && !wasHit) {
             wasHit = true;
-            Debug.Log("Enemy Hit");
+            Debug.Log("Player was hit");
         }
     }
 
