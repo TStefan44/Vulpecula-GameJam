@@ -180,7 +180,7 @@ CapsuleCollider2D:
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
-  m_Size: {x: 1, y: 2.5798745}
+  m_Size: {x: 1, y: 2.5}
   m_Direction: 0
 --- !u!114 &8886717721807712558
 MonoBehaviour:
@@ -200,6 +200,8 @@ MonoBehaviour:
   groundMask:
     serializedVersion: 2
     m_Bits: 64
+  rb: {fileID: 5475608900357753963}
+  capsuleColider: {fileID: 8902224003167555291}
 --- !u!1 &8079301484248165833
 GameObject:
   m_ObjectHideFlags: 0

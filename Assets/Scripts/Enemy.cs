@@ -7,59 +7,59 @@ public class Enemy : MonoBehaviour
     [SerializeField] private LayerMask playerMask;
     [SerializeField] private LayerMask groundMask;
     [SerializeField] private Rigidbody2D rb;
-    private PlayerMovement player;
-    private float circleRadius = 10f;
-    private float fielPlayerSee = 5f;
-    private Vector3 startPosition;
-    private Vector3 dirToPlayer;
-    
 
-    // Start is called before the first frame update
-    void Start()
-    {
-        startPosition = this.transform.position;
-        player = PlayerMovement.instance
-    }
+    private float enemySpeed = 5f;
+    private float circleRadius = 10f;
+
+    private Vector3 dirToPlayer;
 
     // Update is called once per frame
     void Update()
     {
-        if (detectPlayer())
+        bool detect = detectPlayer();
+        if (detect)
         {
             Debug.Log("Player Detect");
 
             if (seePlayer())
             {
                 Debug.Log("Enemy can see player");
+                goToPlayer();
+            }
+            else
+            {
+                rb.velocity = Vector2.zero;
             }
         }
     }
 
     private bool seePlayer()
     {
-        bool seePlayer = false;
-        RaycastHit2D hit = Physics2D.CircleCast(transform.position, fielPlayerSee, dirToPlayer, playerMask | groundMask);
+        RaycastHit2D hit = Physics2D.Raycast(rb.position, dirToPlayer, circleRadius, playerMask | groundMask);
         if (hit.collider != null && hit.collider.gameObject.layer == LayerMask.NameToLayer("Player"))
         {
-            seePlayer = true;
+            return true;
         }
-        return seePlayer;
+        return false;
     }
 
     private bool detectPlayer()
     {
-        bool detectPlayer = false;
-        Collider2D playerHit = Physics2D.OverlapCircle(this.transform.position, circleRadius, playerMask);
+        Collider2D playerHit = Physics2D.OverlapCircle(rb.position, circleRadius, playerMask);
         if (playerHit)
         {
-            detectPlayer = true;
+
             dirToPlayer = playerHit.transform.position - transform.position;
+            return true;
         }
-        return detectPlayer;
+        dirToPlayer = Vector3.zero;
+        return false;
     }
 
     private void goToPlayer()
     {
-
+        Vector2 direction = new Vector2(dirToPlayer.x, 0).normalized;
+        rb.velocity = direction * enemySpeed;
     }
+
 }
