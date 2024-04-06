@@ -16,12 +16,13 @@ public class PlayerMovement : MonoBehaviour
     private bool isGrounded;
     private bool dJumpCharge;
     private float horizontal;
-    private bool wasHit = false;
+    private bool iFrame = false;
     private float hitTimer = 1f;
     private float currentHitTimer = 0f;
 
     public static PlayerMovement instance;
     private GameManager gameManager;
+    private PlayerDash dashInstace;
 
     private void Awake()
     {
@@ -31,6 +32,7 @@ public class PlayerMovement : MonoBehaviour
         }
         instance = this;
         gameManager = GameManager.instance;
+        dashInstace = PlayerDash.instance;
     }
 
     // Start is called before the first frame update
@@ -45,13 +47,13 @@ public class PlayerMovement : MonoBehaviour
         enemyInteract();
         projectileInteract();
 
-        if (wasHit)
+        if (iFrame)
         {
             currentHitTimer += Time.deltaTime;
             if (currentHitTimer >= hitTimer)
             {
                 currentHitTimer = 0f;
-                wasHit = false;
+                iFrame = false;
             }
         }
 
@@ -83,16 +85,23 @@ public class PlayerMovement : MonoBehaviour
 
     private void projectileInteract()
     {
-        Vector2 position = new Vector2(transform.position.x, transform.position.y);
+        Vector2 position = new Vector2(rb.position.x, rb.position.y);
         Vector2 direction = new Vector2(horizontal, 0).normalized;
-        RaycastHit2D hit = new RaycastHit2D();
+        Collider2D hit = new Collider2D();
 
-        hit = Physics2D.CircleCast(position, gameManager.PlayerCastRadius, direction, 0f, projectileLayer);
-        if (hit && !wasHit)
+        hit = Physics2D.OverlapCircle(position, gameManager.PlayerCastRadius, projectileLayer);
+        if (hit && !iFrame)
         {
-            wasHit = true;
             Destroy(hit.transform.gameObject);
-            Debug.Log("Player was hit by projectile");
+            if (dashInstace.PlayerIsDashing)
+            {
+                Debug.Log("Player destroyed the Projectile");
+            }
+            else
+            {
+                iFrame = true;
+                Debug.Log("Player was hit by Projectile");
+            }
         }
     }
 
@@ -103,9 +112,12 @@ public class PlayerMovement : MonoBehaviour
         RaycastHit2D hit = new RaycastHit2D();
 
         hit = Physics2D.CircleCast(position, gameManager.PlayerCastRadius, direction, 0f, enemyLayer);
-        if (hit && !wasHit) {
-            wasHit = true;
-            Debug.Log("Player was hit");
+        if (hit && !iFrame) {
+            if (!dashInstace.PlayerIsDashing)
+            {
+                iFrame = true;
+                Debug.Log("Player was hit");
+            }
         }
     }
 
@@ -117,5 +129,10 @@ public class PlayerMovement : MonoBehaviour
     private bool IsGrounded()
     {
         return Physics2D.OverlapCircle(groundCheck.position, gameManager.PlayerGroundCapsuleWidth, groundLayer);
+    }
+
+    public void activateIFrame()
+    {
+        iFrame = true;
     }
 }

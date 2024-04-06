@@ -4,5 +4,8 @@ using UnityEngine;
 
 public class EnemyShortRange : Enemy
 {
-    
+    private new void Update()
+    {
+        base.Update();
+    }
 }

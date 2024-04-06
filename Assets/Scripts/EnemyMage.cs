@@ -49,7 +49,6 @@ public class EnemyMage : Enemy
 
     override public void Attack()
     {
-        Debug.Log("I want to attack");
 
         if (canAttack)
         {

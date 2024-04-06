@@ -143,6 +143,12 @@ MonoBehaviour:
   rb: {fileID: 2553717340020352034}
   groundCheck: {fileID: 5019034928976193606}
   tr: {fileID: -3614576823599500609}
+  platformLayer:
+    serializedVersion: 2
+    m_Bits: 64
+  enemyLayer:
+    serializedVersion: 2
+    m_Bits: 128
 --- !u!96 &-3614576823599500609
 TrailRenderer:
   serializedVersion: 3
