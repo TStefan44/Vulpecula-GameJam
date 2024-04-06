@@ -18,7 +18,20 @@ public class Health : MonoBehaviour
     // Update is called once per frame
     void Update()
     {   
+
         healthBar.value = currentHealth;
        
     }
+
+    void TakeDamage(int damage)
+    {
+        currentHealth -= damage;
+        healthBar.value = currentHealth;
+    }
+    void heal(int heal)
+    {
+        currentHealth += heal;
+        healthBar.value = currentHealth;
+    }
+   
 }
