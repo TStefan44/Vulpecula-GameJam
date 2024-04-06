@@ -9,7 +9,7 @@ public class GameManager : MonoBehaviour
     [SerializeField] private float playerJumpingPower = 20f;
     [SerializeField] private float playerFallFactor = 0.5f;
     [SerializeField] private float playerGroundCapsule_w = 0.2f;
-    [SerializeField] private float playerCastRadius = 2f;
+    [SerializeField] private float playerCastRadius = 1f;
     [SerializeField] private bool playerCanDJump = true;
 
     public static GameManager instance;
@@ -27,7 +27,7 @@ public class GameManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
+        playerCastRadius = 1f;
     }
 
     // Update is called once per frame

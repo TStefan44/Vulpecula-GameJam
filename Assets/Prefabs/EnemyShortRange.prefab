@@ -95,9 +95,9 @@ GameObject:
   - component: {fileID: 8661887349279776159}
   - component: {fileID: 5475608900357753963}
   - component: {fileID: 8902224003167555291}
-  - component: {fileID: 1954739007598941568}
+  - component: {fileID: 4947372536625986266}
   m_Layer: 7
-  m_Name: Enemy
+  m_Name: EnemyShortRange
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -146,7 +146,7 @@ Rigidbody2D:
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 0
-  m_Constraints: 0
+  m_Constraints: 4
 --- !u!70 &8902224003167555291
 CapsuleCollider2D:
   m_ObjectHideFlags: 0
@@ -180,9 +180,9 @@ CapsuleCollider2D:
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
-  m_Size: {x: 1, y: 2.5798745}
+  m_Size: {x: 1, y: 2.5}
   m_Direction: 0
---- !u!114 &1954739007598941568
+--- !u!114 &4947372536625986266
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -191,9 +191,17 @@ MonoBehaviour:
   m_GameObject: {fileID: 5023906290999514842}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5b1272b029f58c145ba7e80f1dfc31aa, type: 3}
+  m_Script: {fileID: 11500000, guid: 764e55c916373ca44900bc02cdc1fb41, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  playerMask:
+    serializedVersion: 2
+    m_Bits: 256
+  groundMask:
+    serializedVersion: 2
+    m_Bits: 64
+  groundCheck: {fileID: 6027387366409010754}
+  rb: {fileID: 5475608900357753963}
 --- !u!1 &8079301484248165833
 GameObject:
   m_ObjectHideFlags: 0

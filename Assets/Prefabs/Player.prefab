@@ -121,6 +121,9 @@ MonoBehaviour:
   enemyLayer:
     serializedVersion: 2
     m_Bits: 128
+  projectileLayer:
+    serializedVersion: 2
+    m_Bits: 512
 --- !u!114 &2362942173786367415
 MonoBehaviour:
   m_ObjectHideFlags: 0
