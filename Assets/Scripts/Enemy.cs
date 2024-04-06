@@ -2,19 +2,33 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Enemy : MonoBehaviour
+public abstract class Enemy : MonoBehaviour
 {
     [SerializeField] private LayerMask playerMask;
     [SerializeField] private LayerMask groundMask;
+    [SerializeField] private Transform groundCheck;
     [SerializeField] private Rigidbody2D rb;
 
-    private float enemySpeed = 5f;
     private float circleRadius = 10f;
+    private GameManager gameManager;
 
-    private Vector3 dirToPlayer;
+    protected PlayerMovement player;
+    protected float enemySpeed = 5f;
+    protected float rangeAttack = 5f;
+    protected Vector3 dirToPlayer;
+
+    protected void Awake()
+    {
+        gameManager = GameManager.instance;
+    }
+
+    protected void Start()
+    {
+        player = PlayerMovement.instance;
+    }
 
     // Update is called once per frame
-    void Update()
+    protected void Update()
     {
         bool detect = detectPlayer();
         if (detect)
@@ -25,12 +39,22 @@ public class Enemy : MonoBehaviour
             {
                 Debug.Log("Enemy can see player");
                 goToPlayer();
+
+                if (Vector3.Distance(player.transform.position, rb.position) <= rangeAttack)
+                {
+                    Attack();
+                }
             }
             else
             {
                 rb.velocity = Vector2.zero;
             }
         }
+    }
+
+    private bool IsGrounded()
+    {
+        return Physics2D.OverlapCircle(groundCheck.position, 2f, groundMask); ;
     }
 
     private bool seePlayer()
@@ -56,10 +80,20 @@ public class Enemy : MonoBehaviour
         return false;
     }
 
-    private void goToPlayer()
+    virtual public void goToPlayer()
     {
-        Vector2 direction = new Vector2(dirToPlayer.x, 0).normalized;
+        Vector2 direction;
+        if (IsGrounded() == false)
+        {
+            direction = new Vector2(dirToPlayer.x, -1f).normalized;
+        }
+        else
+        {
+            direction = new Vector2(dirToPlayer.x, 0).normalized;
+        }
         rb.velocity = direction * enemySpeed;
     }
+
+    virtual public void Attack() { }
 
 }

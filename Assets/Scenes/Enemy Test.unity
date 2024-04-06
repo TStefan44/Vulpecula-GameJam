@@ -844,7 +844,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 5023906290999514842, guid: 017b604eabc2bfb479e1881ea658ea4c, type: 3}
       propertyPath: m_Name
-      value: Enemy
+      value: EnemyMage
       objectReference: {fileID: 0}
     - target: {fileID: 5475608900357753963, guid: 017b604eabc2bfb479e1881ea658ea4c, type: 3}
       propertyPath: m_Constraints

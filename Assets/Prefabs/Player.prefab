@@ -14,7 +14,6 @@ GameObject:
   - component: {fileID: 2055954115066252059}
   - component: {fileID: 2362942173786367415}
   - component: {fileID: -3614576823599500609}
-  - component: {fileID: 5262420078284381807}
   m_Layer: 8
   m_Name: Player
   m_TagString: Untagged
@@ -122,6 +121,9 @@ MonoBehaviour:
   enemyLayer:
     serializedVersion: 2
     m_Bits: 128
+  projectileLayer:
+    serializedVersion: 2
+    m_Bits: 512
 --- !u!114 &2362942173786367415
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -137,11 +139,9 @@ MonoBehaviour:
   dashingPower: 25
   dashingTime: 0.2
   dashingCooldown: 1
-  gameInput: {fileID: 0}
   rb: {fileID: 2553717340020352034}
   groundCheck: {fileID: 5019034928976193606}
   tr: {fileID: -3614576823599500609}
-  dashType: {fileID: 0}
 --- !u!96 &-3614576823599500609
 TrailRenderer:
   serializedVersion: 3
@@ -255,21 +255,6 @@ TrailRenderer:
   m_Autodestruct: 0
   m_Emitting: 0
   m_ApplyActiveColorSpace: 1
---- !u!114 &5262420078284381807
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2863973504433638459}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c7bd707da2797234b80bcc9d8cb44430, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  healthBar: {fileID: 0}
-  maxHealth: 100
-  currentHealth: 0
 --- !u!1 &5866566579232968856
 GameObject:
   m_ObjectHideFlags: 0
