@@ -8,4 +8,9 @@ public class EnemyShortRange : Enemy
     {
         base.Update();
     }
+
+    override public void Attack() {
+        base.Attack();
+        animator.SetTrigger("isAttack");
+    }
 }

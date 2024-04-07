@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7469157889326229887}
   - component: {fileID: 8128787035769866414}
+  - component: {fileID: 3761874011761854247}
   m_Layer: 7
   m_Name: Player Visual
   m_TagString: Untagged
@@ -26,9 +27,9 @@ Transform:
   m_GameObject: {fileID: 4194205775245321495}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1.5, y: 2.5, z: 0}
-  m_ConstrainProportionsScale: 0
+  m_LocalPosition: {x: 0.84, y: 0.64, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 0}
+  m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 8661887349279776159}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -73,8 +74,8 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 369fb467037f3a8418fecd1f4603ffb4, type: 3}
-  m_Color: {r: 0.77254903, g: 0.51199716, b: 0.39607844, a: 1}
+  m_Sprite: {fileID: 21300000, guid: c8fb36c9573aec04bb0fe4eac28ec680, type: 3}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -84,6 +85,27 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!95 &3761874011761854247
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4194205775245321495}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 3b156ce8c7d112941a2a4f3158591636, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!1 &5023906290999514842
 GameObject:
   m_ObjectHideFlags: 0
@@ -179,8 +201,8 @@ CapsuleCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
-  m_Size: {x: 1, y: 2.5}
+  m_Offset: {x: 0, y: 0.62342227}
+  m_Size: {x: 1, y: 3.7468445}
   m_Direction: 0
 --- !u!114 &4947372536625986266
 MonoBehaviour:
@@ -202,6 +224,7 @@ MonoBehaviour:
     m_Bits: 64
   groundCheck: {fileID: 6027387366409010754}
   rb: {fileID: 5475608900357753963}
+  animator: {fileID: 3761874011761854247}
 --- !u!1 &8079301484248165833
 GameObject:
   m_ObjectHideFlags: 0

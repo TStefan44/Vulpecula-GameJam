@@ -49,9 +49,10 @@ public class EnemyMage : Enemy
 
     override public void Attack()
     {
-
+        base.Attack();
         if (canAttack)
         {
+            animator.SetTrigger("isAttack");
             Projectile newProjectile = Instantiate(projectile, transform.position, Quaternion.identity);
             newProjectile.setDirection(dirToPlayer);
             newProjectile.setSpeed(3f);
