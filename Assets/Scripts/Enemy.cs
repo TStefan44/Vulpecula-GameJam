@@ -99,9 +99,9 @@ public abstract class Enemy : MonoBehaviour
 
             if (health <= 0f)
             {
-                Destroy(gameObject);
                 Instantiate(explodeEffect, rb.position, Quaternion.identity);
                 audioManager.PlaySFX(audioManager.enemyDeath);
+                Destroy(gameObject);
             }
         }
     }

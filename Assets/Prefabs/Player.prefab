@@ -166,6 +166,9 @@ MonoBehaviour:
   enemyLayer:
     serializedVersion: 2
     m_Bits: 128
+  endLayer:
+    serializedVersion: 2
+    m_Bits: 1024
 --- !u!96 &-3614576823599500609
 TrailRenderer:
   serializedVersion: 3
