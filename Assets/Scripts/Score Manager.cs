@@ -5,17 +5,19 @@ using UnityEngine.UI;
 
 public class ScoreManager : MonoBehaviour
 {
-     private Text scoreText;
+    public Text scoreText;
 
     private int currentScore;
     private int timeScore;
     private float timer;
 
+    public static ScoreManager instance;
+
     // Start is called before the first frame update
     void Awake()
     {
-        GameObject score = GameObject.Find("Score");
-        score.Text = currentScore.ToString() + " points";
+        scoreText.text = "Score: " + 300.ToString();
+        instance = this;
     }
 
     void Start()
@@ -28,17 +30,22 @@ public class ScoreManager : MonoBehaviour
     {
 
         timer += Time.deltaTime;
-        if (timer >= 1f) {
+        if (timer >= 1f)
+        {
             timeScore -= 1;
             timer = 0f;
-                }
+        }
+
+        scoreText.text = "Score: " + timeScore.ToString();
     }
 
-    public void LoseScoreDamage(int damage)
+    public void LoseScoreDamage()
     {
-        if (damage > 0)
             currentScore -= 5;
     }
+
+    public void GainScore(int value) {
+        currentScore += value; }
 
     
 
