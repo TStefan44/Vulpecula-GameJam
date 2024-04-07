@@ -38,6 +38,7 @@ public class Health : MonoBehaviour
         else
         {
             currentHealth = 0;
+            GameManager.instance.endGame();
         }
 
         healthImage.fillAmount = (float)currentHealth / 100f;

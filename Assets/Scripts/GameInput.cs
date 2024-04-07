@@ -1,6 +1,5 @@
 using System.Collections;
 using System.Collections.Generic;
-using UnityEditor.U2D.Aseprite;
 using UnityEngine;
 using UnityEngine.InputSystem.Controls;
 
@@ -18,7 +17,19 @@ public class GameInput : MonoBehaviour
         float horizontal = 0f;
         //Debug.Log(playerInputActions.Player.HorizontalMove.ReadValue<Vector2>().x);
 
-        horizontal = Input.GetAxisRaw("Horizontal");
+        //float horizontal = 0f;
+
+        // Check if A key is pressed
+        if (Input.GetKey(KeyCode.A))
+        {
+            horizontal -= 1f; // Move left
+        }
+
+        // Check if D key is pressed
+        if (Input.GetKey(KeyCode.D))
+        {
+            horizontal += 1f; // Move right
+        }
 
         return horizontal;
     }
@@ -26,14 +37,14 @@ public class GameInput : MonoBehaviour
     public bool PlayerWantsToJump()
     {
         bool playerJump = false;
-        playerJump = Input.GetButtonDown("Jump");
+        playerJump = Input.GetKeyDown(KeyCode.Space);
         return playerJump;
     }
 
     public bool PlayerJumped()
     {
         bool playerJump = false;
-        playerJump = Input.GetButtonUp("Jump");
+        playerJump = Input.GetKeyUp(KeyCode.Space);
         return playerJump;
     }
 

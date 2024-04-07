@@ -3,7 +3,6 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
-using static UnityEditor.Searcher.SearcherWindow.Alignment;
 
 public class PlayerDash : MonoBehaviour
 {
@@ -47,19 +46,19 @@ public class PlayerDash : MonoBehaviour
     {
 
 
-        if (Input.GetKeyDown(KeyCode.U))
+        if (Input.GetKeyDown(KeyCode.Q))
         {
             //dashType.text = "Long Dash";
-            UnityEngine.Debug.Log("U");
+            UnityEngine.Debug.Log("Q");
             dashingPower = 15f;
             dashingTime = 0.2f;
             dashingCooldown = 1f;
             tr.startColor = Color.red;
         }
-        if (Input.GetKeyDown(KeyCode.I))
+        if (Input.GetKeyDown(KeyCode.E))
         {
             //dashType.text = "Normal Dash";
-            UnityEngine.Debug.Log("I");
+            UnityEngine.Debug.Log("E");
             dashingPower = 5f;
             dashingTime = 0.2f;
             dashingCooldown = 1f;
@@ -124,6 +123,7 @@ public class PlayerDash : MonoBehaviour
                 EndCollision endCollision = hit.collider.GetComponent<EndCollision>();
                 if (endCollision != null)
                 {
+                    enemyDamaged = true;
                     endCollision.DestroyCrystal();
                 }
             }

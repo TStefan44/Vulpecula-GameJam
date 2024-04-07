@@ -26,6 +26,8 @@ public class EndCollision : MonoBehaviour
             ExplodeEffect effect = Instantiate(explodeEffect, transform.position, Quaternion.identity);
             effect.transform.localScale = Vector3.one * 5f;
             Destroy(gameObject);
+            ScoreManager.instance.GainScore(100);
+            GameManager.instance.endGame();
         }
     }
 

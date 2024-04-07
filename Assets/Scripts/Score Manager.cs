@@ -7,7 +7,6 @@ public class ScoreManager : MonoBehaviour
 {
     public Text scoreText;
 
-    private int currentScore;
     private int timeScore;
     private float timer;
 
@@ -22,7 +21,6 @@ public class ScoreManager : MonoBehaviour
 
     void Start()
     {
-        currentScore = 0;
         timeScore = 300;
     }
 
@@ -41,11 +39,17 @@ public class ScoreManager : MonoBehaviour
 
     public void LoseScoreDamage()
     {
-            currentScore -= 5;
+        timeScore -= 5;
+        if (timeScore < 0)
+        {
+            timeScore = 0;
+        }
     }
 
     public void GainScore(int value) {
-        currentScore += value; }
+        timeScore += value; }
+
+    public int GetScore => timeScore;
 
     
 
