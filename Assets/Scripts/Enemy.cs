@@ -8,6 +8,7 @@ public abstract class Enemy : MonoBehaviour
     [SerializeField] private LayerMask groundMask;
     [SerializeField] private Transform groundCheck;
     [SerializeField] private Rigidbody2D rb;
+    [SerializeField] protected Animator animator;
 
     private int health = 100;
 
@@ -36,6 +37,15 @@ public abstract class Enemy : MonoBehaviour
     // Update is called once per frame
     protected void Update()
     {
+        if (dirToPlayer.x < 0)
+        {
+            transform.localScale = new Vector3(-1f, transform.localScale.y, transform.localScale.z);
+        }
+        else
+        {
+            transform.localScale = new Vector3(1f, transform.localScale.y, transform.localScale.z);
+        }
+
         if (takenDamage)
         {
             if (currentIFrame < IFramdeDamge)
@@ -46,6 +56,7 @@ public abstract class Enemy : MonoBehaviour
             {
                 currentIFrame = 0f;
                 takenDamage = false;
+                animator.SetBool("isHit", false);
             }
         }
 
@@ -66,6 +77,7 @@ public abstract class Enemy : MonoBehaviour
             }
             else
             {
+                animator.SetBool("isWalking", false);
                 rb.velocity = Vector2.zero;
             }
         }
@@ -79,6 +91,7 @@ public abstract class Enemy : MonoBehaviour
             Debug.Log("Enemy damaged");
             takenDamage = true;
             health -= gameManager.PlayerDamage;
+            animator.SetBool("isHit", true);
 
             if (health <= 0f)
             {
@@ -127,8 +140,10 @@ public abstract class Enemy : MonoBehaviour
             direction = new Vector2(dirToPlayer.x, rb.velocity.y).normalized;
         }
         rb.velocity = new Vector2(direction.x * enemySpeed, rb.velocity.y);
+        animator.SetBool("isWalking", true);
     }
 
-    virtual public void Attack() { }
+    virtual public void Attack() {
+    }
 
 }
