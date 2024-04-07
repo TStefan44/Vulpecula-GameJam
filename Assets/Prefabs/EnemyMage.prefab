@@ -225,6 +225,7 @@ MonoBehaviour:
   groundCheck: {fileID: 6027387366409010754}
   rb: {fileID: 5475608900357753963}
   animator: {fileID: 5771136138954981809}
+  explodeEffect: {fileID: 4122569909137859505, guid: b42c7b9c0a7f41d408bf4531b77de702, type: 3}
   projectile: {fileID: 6402694498148647142, guid: 04300f9cd23ee88458cbeb9235e0e1fe, type: 3}
 --- !u!1 &8079301484248165833
 GameObject:
