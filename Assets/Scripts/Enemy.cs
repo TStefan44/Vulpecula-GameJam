@@ -25,9 +25,12 @@ public abstract class Enemy : MonoBehaviour
     protected float IFramdeDamge = 0.5f;
     protected float currentIFrame = 0f;
 
+    protected AudioManager audioManager;
+
     protected void Awake()
     {
         gameManager = GameManager.instance;
+        audioManager = GameObject.FindGameObjectWithTag("Audio").GetComponent<AudioManager>();
     }
 
     protected void Start()
@@ -98,6 +101,7 @@ public abstract class Enemy : MonoBehaviour
             {
                 Destroy(gameObject);
                 Instantiate(explodeEffect, rb.position, Quaternion.identity);
+                audioManager.PlaySFX(audioManager.enemyDeath);
             }
         }
     }
@@ -146,6 +150,7 @@ public abstract class Enemy : MonoBehaviour
     }
 
     virtual public void Attack() {
+
     }
 
 }

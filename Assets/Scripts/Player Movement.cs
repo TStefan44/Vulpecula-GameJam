@@ -26,6 +26,8 @@ public class PlayerMovement : MonoBehaviour
     private GameManager gameManager;
     private PlayerDash dashInstace;
 
+    private AudioManager audioManager;
+
     private void Awake()
     {
         if (instance != null)
@@ -35,6 +37,8 @@ public class PlayerMovement : MonoBehaviour
         instance = this;
         gameManager = GameManager.instance;
         dashInstace = PlayerDash.instance;
+
+        audioManager = GameObject.FindGameObjectWithTag("Audio").GetComponent<AudioManager>();
     }
 
     // Start is called before the first frame update
@@ -131,6 +135,7 @@ public class PlayerMovement : MonoBehaviour
                 iFrame = true;
                 Debug.Log("Player was hit by Projectile");
                 health.TakeDamage(gameManager.DamageProjectile);
+                audioManager.PlaySFX(audioManager.damageTaken);
             }
         }
     }
@@ -148,6 +153,7 @@ public class PlayerMovement : MonoBehaviour
                 iFrame = true;
                 Debug.Log("Player was hit");
                 health.TakeDamage(gameManager.DamageEnemyCollision);
+                audioManager.PlaySFX(audioManager.damageTaken);
             }
         }
     }

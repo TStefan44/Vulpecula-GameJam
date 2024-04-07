@@ -21,10 +21,12 @@ public class PlayerDash : MonoBehaviour
     [SerializeField] private LayerMask enemyLayer;
     private float hitDashPower;
     //public Text dashType;
-
+    private AudioManager audioManager;
 
     private void Awake()
     {
+        audioManager = GameObject.FindGameObjectWithTag("Audio").GetComponent<AudioManager>();
+
         if (instance != null)
         {
             Debug.LogError("More than 1 dash instance");
@@ -76,6 +78,7 @@ public class PlayerDash : MonoBehaviour
     }
     private IEnumerator Dash()
     {
+        audioManager.PlaySFX(audioManager.dash);
         float horizontal = gameInput.getHorizontalMovement();
         checkPlatformCollision(horizontal);
         checkEnemyCollision(horizontal);
