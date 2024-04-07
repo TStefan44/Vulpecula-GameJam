@@ -10,6 +10,7 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] private LayerMask groundLayer;
     [SerializeField] private LayerMask enemyLayer;
     [SerializeField] private LayerMask projectileLayer;
+    [SerializeField] private Health health;
 
     private bool playerWantsToJump;
     private bool playerJumped;
@@ -96,11 +97,13 @@ public class PlayerMovement : MonoBehaviour
             if (dashInstace.PlayerIsDashing)
             {
                 Debug.Log("Player destroyed the Projectile");
+                health.heal(gameManager.HealProjectile);
             }
             else
             {
                 iFrame = true;
                 Debug.Log("Player was hit by Projectile");
+                health.TakeDamage(gameManager.DamageProjectile);
             }
         }
     }
@@ -117,6 +120,7 @@ public class PlayerMovement : MonoBehaviour
             {
                 iFrame = true;
                 Debug.Log("Player was hit");
+                health.TakeDamage(gameManager.DamageEnemyCollision);
             }
         }
     }

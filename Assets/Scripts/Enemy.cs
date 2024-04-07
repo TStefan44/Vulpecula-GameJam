@@ -9,6 +9,8 @@ public abstract class Enemy : MonoBehaviour
     [SerializeField] private Transform groundCheck;
     [SerializeField] private Rigidbody2D rb;
 
+    private int health = 100;
+
     private float circleRadius = 10f;
     private GameManager gameManager;
 
@@ -76,6 +78,12 @@ public abstract class Enemy : MonoBehaviour
         {
             Debug.Log("Enemy damaged");
             takenDamage = true;
+            health -= gameManager.PlayerDamage;
+
+            if (health <= 0f)
+            {
+                Destroy(gameObject);
+            }
         }
     }
 
