@@ -11,6 +11,7 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] private LayerMask enemyLayer;
     [SerializeField] private LayerMask projectileLayer;
     [SerializeField] private Health health;
+    [SerializeField] private Animator animator;
 
     private bool playerWantsToJump;
     private bool playerJumped;
@@ -59,18 +60,43 @@ public class PlayerMovement : MonoBehaviour
         }
 
         horizontal = gameInput.getHorizontalMovement();
+
+        if (horizontal != 0)
+        {
+            animator.SetBool("isRun", true);
+            if (horizontal < 0)
+            {
+                transform.localScale = new Vector3(-1f, transform.localScale.y, transform.localScale.z);
+            }
+            else
+            {
+                transform.localScale = new Vector3(1f, transform.localScale.y, transform.localScale.z);
+            }
+        }
+        else
+        {
+            animator.SetBool("isRun", false);
+        }
+
         playerWantsToJump = gameInput.PlayerWantsToJump();
         playerJumped = gameInput.PlayerJumped();
         isGrounded = IsGrounded();
 
+        if (isGrounded)
+        {
+            animator.SetBool("isJumping", false);
+        }
+
         if (playerWantsToJump && isGrounded)
         {
+            animator.SetBool("isJumping", true);
             rb.velocity = new Vector2(rb.velocity.x, gameManager.PlayerJumpingPower);
             dJumpCharge = true;
         }
 
         if (playerJumped && rb.velocity.y > 0f)
         {
+            animator.SetBool("isJumping", true);
             rb.velocity = new Vector2(rb.velocity.x, rb.velocity.y * gameManager.PlayerFallFactor);
         }
 
@@ -78,6 +104,7 @@ public class PlayerMovement : MonoBehaviour
         {
             if (dJumpCharge)
             {
+                animator.SetBool("isJumping", true);
                 rb.velocity = new Vector2(rb.velocity.x, gameManager.PlayerJumpingPower);
                 dJumpCharge = false;
             }

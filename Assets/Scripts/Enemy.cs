@@ -9,6 +9,7 @@ public abstract class Enemy : MonoBehaviour
     [SerializeField] private Transform groundCheck;
     [SerializeField] private Rigidbody2D rb;
     [SerializeField] protected Animator animator;
+    [SerializeField] private ExplodeEffect explodeEffect;
 
     private int health = 100;
 
@@ -96,6 +97,7 @@ public abstract class Enemy : MonoBehaviour
             if (health <= 0f)
             {
                 Destroy(gameObject);
+                Instantiate(explodeEffect, rb.position, Quaternion.identity);
             }
         }
     }
