@@ -57,6 +57,7 @@ public class EnemyMage : Enemy
             newProjectile.setDirection(dirToPlayer);
             newProjectile.setSpeed(3f);
             canAttack = false;
+            audioManager.PlaySFX(audioManager.enemyAttack);
         }
     }
 }
