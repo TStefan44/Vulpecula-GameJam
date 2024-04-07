@@ -101,6 +101,7 @@ public abstract class Enemy : MonoBehaviour
             {
                 Instantiate(explodeEffect, rb.position, Quaternion.identity);
                 audioManager.PlaySFX(audioManager.enemyDeath);
+                ScoreManager.instance.GainScore(10);
                 Destroy(gameObject);
             }
         }

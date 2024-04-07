@@ -135,6 +135,7 @@ public class PlayerMovement : MonoBehaviour
                 iFrame = true;
                 Debug.Log("Player was hit by Projectile");
                 health.TakeDamage(gameManager.DamageProjectile);
+                ScoreManager.instance.LoseScoreDamage();
                 audioManager.PlaySFX(audioManager.damageTaken);
             }
         }
@@ -154,6 +155,7 @@ public class PlayerMovement : MonoBehaviour
                 Debug.Log("Player was hit");
                 health.TakeDamage(gameManager.DamageEnemyCollision);
                 audioManager.PlaySFX(audioManager.damageTaken);
+                ScoreManager.instance.LoseScoreDamage();
             }
         }
     }
