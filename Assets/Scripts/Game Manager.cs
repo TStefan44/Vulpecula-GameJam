@@ -11,6 +11,10 @@ public class GameManager : MonoBehaviour
     [SerializeField] private float playerGroundCapsule_w = 0.2f;
     [SerializeField] private float playerCastRadius = 1f;
     [SerializeField] private bool playerCanDJump = true;
+    [SerializeField] private int playerDamage = 50;
+    [SerializeField] private int damageEnemyCollision = 20;
+    [SerializeField] private int damageProjectile = 30;
+    [SerializeField] private int healProjectile = 10;
 
     public static GameManager instance;
 
@@ -42,4 +46,8 @@ public class GameManager : MonoBehaviour
     public float PlayerGroundCapsuleWidth => playerGroundCapsule_w;
     public bool PlayerCanDJump => playerCanDJump;
     public float PlayerCastRadius => playerCastRadius;
+    public int DamageEnemyCollision => damageEnemyCollision;
+    public int DamageProjectile => damageProjectile;
+    public int HealProjectile => healProjectile;
+    public int PlayerDamage => playerDamage;
 }

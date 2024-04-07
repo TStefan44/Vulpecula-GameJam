@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 8304387601676838282}
   - component: {fileID: 2553717340020352034}
   - component: {fileID: 8609699539150344205}
+  - component: {fileID: 1347176442046211495}
   - component: {fileID: 2055954115066252059}
   - component: {fileID: 2362942173786367415}
   - component: {fileID: -3614576823599500609}
@@ -100,6 +101,22 @@ CapsuleCollider2D:
   m_Offset: {x: 0, y: 0.5}
   m_Size: {x: 1.7, y: 2.5}
   m_Direction: 0
+--- !u!114 &1347176442046211495
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2863973504433638459}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e23a355ac393f9b4ca5c1c4db200991e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  healthBar: {fileID: 5737026759398912696, guid: 5da057fdbbbc75e47b285dd32ffe9c6a, type: 3}
+  canvas: {fileID: 3254694900778904364, guid: 8d8ee6a51abaf814b92a5227265b64ef, type: 3}
+  maxHealth: 100
+  currentHealth: 100
 --- !u!114 &2055954115066252059
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -124,6 +141,7 @@ MonoBehaviour:
   projectileLayer:
     serializedVersion: 2
     m_Bits: 512
+  health: {fileID: 1347176442046211495}
 --- !u!114 &2362942173786367415
 MonoBehaviour:
   m_ObjectHideFlags: 0
